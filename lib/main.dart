@@ -74,6 +74,9 @@ class _HomePageState extends State<HomePage> {
                         final double tempLat =
                             double.parse(_items[index]["latitude"]);
                         final String tempName = _items[index]["name"];
+                        final String tempUrl = _items[index]["image"];
+                        final String tempAddress = _items[index]["address"];
+                        final String tempPhoneNumber = _items[index]["phoneNumber"];
                         return GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -83,6 +86,9 @@ class _HomePageState extends State<HomePage> {
                                           lat: tempLat,
                                           lng: tempLng,
                                           name: tempName,
+                                          url: tempUrl,
+                                          address: tempAddress,
+                                          phoneNumber: tempPhoneNumber,
                                         )));
                           },
                           child: Card(
