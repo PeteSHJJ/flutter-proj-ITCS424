@@ -1,0 +1,24 @@
+{
+    "items": [
+        {
+
+            "name": "Thonburi 2 hospital",
+            "latitude": "13.783080407774168",
+            "longtitude": "100.40039305350923",
+            "image": "https://hd.co.th/system/hospitals/image2s/000/000/140/original/intro-img.jpg"
+        },
+        {
+            "name":"Chaophya Hospital",
+            "latitude":"13.781371128222036",
+            "longtitude":"100.47092539478751",
+            "image": "https://hd.co.th/system/hospitals/image2s/000/000/140/original/intro-img.jpg"
+            
+        },
+        {
+            "name":"Ratchaphiphat hospital",
+            "latitude":"13.732951119879074",
+            "longtitude":"100.36694146107267",
+            "image": "https://hd.co.th/system/hospitals/image2s/000/000/140/original/intro-img.jpg"
+        }
+    ]
+}

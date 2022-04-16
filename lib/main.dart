@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:my_project/map.dart';
+import 'package:final_proj/map.dart';
 import 'package:flutter/services.dart';
 
 void main() {
@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       // Hide the debug banner
+      color: Colors.blueGrey,
       debugShowCheckedModeBanner: false,
       title: 'We are ready',
       home: HomePage(),
@@ -30,11 +31,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List _items = [];
+  late double lat;
+  late double lng;
 
   // Fetch content from the json file
   Future<void> readJson() async {
-    final String response =
-        await rootBundle.loadString('assets/healthcare.json');
+    final String response = await rootBundle.loadString('assets/data.json');
     final data = await json.decode(response);
     setState(() {
       _items = data["items"];
@@ -44,7 +46,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey[900],
         centerTitle: true,
         title: const Text(
           'We are ready',
@@ -65,15 +69,33 @@ class _HomePageState extends State<HomePage> {
                     child: ListView.builder(
                       itemCount: _items.length,
                       itemBuilder: (context, index) {
-                        return Card(
-                          margin: const EdgeInsets.all(10),
-                          child: ListTile(
+                        final double tempLng =
+                            double.parse(_items[index]["longtitude"]);
+                        final double tempLat =
+                            double.parse(_items[index]["latitude"]);
+                        final String tempName = _items[index]["name"];
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MapsPage(
+                                          lat: tempLat,
+                                          lng: tempLng,
+                                          name: tempName,
+                                        )));
+                          },
+                          child: Card(
+                            margin: const EdgeInsets.all(10),
+                            child: ListTile(
                               title: Text(_items[index]["name"]),
                               subtitle: Text("longtitude: " +
                                   _items[index]["longtitude"] +
                                   " " +
                                   "latitude: " +
-                                  _items[index]["latitude"])),
+                                  _items[index]["latitude"]),
+                            ),
+                          ),
                         );
                       },
                     ),
@@ -81,13 +103,6 @@ class _HomePageState extends State<HomePage> {
                 : Container()
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => MapsPage()));
-        },
-        child: const Icon(Icons.near_me),
       ),
     );
   }

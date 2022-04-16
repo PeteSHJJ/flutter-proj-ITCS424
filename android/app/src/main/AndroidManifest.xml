@@ -1,11 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.my_project">
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    package="com.example.final_proj">
    <application
-        android:label="my_project"
+        android:label="final_proj"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+         <!-- TODO: Add your Google Maps API key here -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyAmRWw_Qz7f14gMdrVmmNprlQcpjy9IQEo"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -32,7 +35,5 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-            <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyAmRWw_Qz7f14gMdrVmmNprlQcpjy9IQEo"/>
     </application>
 </manifest>
