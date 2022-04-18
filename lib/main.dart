@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
 
   // Fetch content from the json file
   Future<void> readJson() async {
-    final String response = await rootBundle.loadString('assets/data.json');
+    final String response = await rootBundle.loadString('assets/hospital_data.json');
     final data = await json.decode(response);
     setState(() {
       _items = data["items"];
